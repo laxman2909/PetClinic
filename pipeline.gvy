@@ -59,7 +59,7 @@ pipeline {
               	
            }		
         }
-    stage('Deploy-App-QA') {
+        stage('Deploy-App-QA') {
   	   steps {
                    echo 'Deploy to QA'
               
@@ -70,17 +70,15 @@ pipeline {
 	      }
 	   }
 	}
-     stage('Deploy-App-PROD') {
+        stage('Deploy-App-PROD') {
 	         steps {
                 // step2
                 echo 'Deploy-App-PROD'
-		            sh script: '/opt/maven/bin/mvn -P metrics pmd:pmd'
-           }
-	         post {
-               success {
-		             recordIssues enabledForFailure: true, tool: pmdParser(pattern: '**/target/pmd.xml')
-               }
-           }		
+                git url: 'https://github.com/lerndevops/PetClinic'
+		sh script: '/opt/maven/bin/mvn compile'
+		            
+               
+                 }	
         }       
     }
 }
