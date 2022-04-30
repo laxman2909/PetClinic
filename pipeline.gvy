@@ -25,6 +25,8 @@ pipeline {
 	          steps {
                 // step3
                 echo 'unittest..'
+                 git url: 'https://github.com/lerndevops/PetClinic'
+		            sh script: '/opt/maven/bin/mvn compile'
             } 
            
 	          	
@@ -45,6 +47,8 @@ pipeline {
 	         steps {
                 // step5
                 echo 'package......'
+                 git url: 'https://github.com/lerndevops/PetClinic'
+		            sh script: '/opt/maven/bin/mvn compile'
 	
            }		
         }
@@ -66,5 +70,17 @@ pipeline {
 	      }
 	   }
 	}
+     stage('Deploy-App-PROD') {
+	         steps {
+                // step2
+                echo 'Deploy-App-PROD'
+		            sh script: '/opt/maven/bin/mvn -P metrics pmd:pmd'
+           }
+	         post {
+               success {
+		             recordIssues enabledForFailure: true, tool: pmdParser(pattern: '**/target/pmd.xml')
+               }
+           }		
+        }       
     }
 }
