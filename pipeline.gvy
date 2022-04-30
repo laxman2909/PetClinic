@@ -39,6 +39,12 @@ pipeline {
 	         steps {
                 // step4
                 echo 'codecoverage..'
+                         git url: 'https://github.com/lerndevops/PetClinic'
+		sh script: '/opt/maven/bin/mvn compile'
+                         git url: 'https://github.com/lerndevops/PetClinic'
+		sh script: '/opt/maven/bin/mvn compile'
+                         git url: 'https://github.com/lerndevops/PetClinic'
+		sh script: '/opt/maven/bin/mvn compile'
 		            
            }
 	         
@@ -49,12 +55,20 @@ pipeline {
                 echo 'package......'
                  git url: 'https://github.com/lerndevops/PetClinic'
 		            sh script: '/opt/maven/bin/mvn compile'
+                         git url: 'https://github.com/lerndevops/PetClinic'
+		sh script: '/opt/maven/bin/mvn compile'
 	
            }		
         }
         stage('build & push docker image') {
 	         steps {
               echo 'build & push docker image'
+                         git url: 'https://github.com/lerndevops/PetClinic'
+		sh script: '/opt/maven/bin/mvn compile'
+                         git url: 'https://github.com/lerndevops/PetClinic'
+		sh script: '/opt/maven/bin/mvn compile'
+                         git url: 'https://github.com/lerndevops/PetClinic'
+		sh script: '/opt/maven/bin/mvn compile'
               
               	
            }		
@@ -62,6 +76,8 @@ pipeline {
         stage('Deploy-App-QA') {
   	   steps {
                    echo 'Deploy to QA'
+                   git url: 'https://github.com/lerndevops/PetClinic'
+		sh script: '/opt/maven/bin/mvn compile'
               
 	   }
 	   post { 
